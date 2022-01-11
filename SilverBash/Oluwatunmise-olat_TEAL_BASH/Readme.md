@@ -16,6 +16,7 @@
     1. pip install -r requirements.txt
     2. pip install py-algorand-sdk
     3. pip install pyteal
+    4. git clone https://github.com/algorand/sandbox.git
 
     Open a bash terminal e.g git bash or a linux terminal and change directory to Oluwatunmise-olat_TEAL_BASH/sandbox.
 
