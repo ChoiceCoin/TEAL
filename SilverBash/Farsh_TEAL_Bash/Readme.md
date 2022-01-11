@@ -1,6 +1,6 @@
 # Periodic_payment  
 [![Documentation Status](https://readthedocs.org/projects/pyteal/badge/?version=latest)](https://pyteal.readthedocs.io/en/latest/?badge=latest)
-## Periodic Payment allows some account to execute periodic withdrawal of funds
+## Periodic Payment allows some account to execute periodic release of funds after a period and number of rounds
 
 This allows TMPL_RCV to withdraw TMPL_AMT every
 
@@ -11,6 +11,8 @@ After TMPL_TIMEOUT, all remaining funds in the escrow
 are available to TMPL_RCV.
 
 
+### Read broadly on the Solution and Description in my Article
+(https://readthedocs.org/projects/pyteal/badge/?version=latest)](https://pyteal.readthedocs.io/en/latest/?badge=latest)
 
 ### Install 
 
