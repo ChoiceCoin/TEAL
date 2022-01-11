@@ -12,7 +12,7 @@ are available to TMPL_RCV.
 
 
 ### Read broadly on the Solution and Description in my Article
-(https://readthedocs.org/projects/pyteal/badge/?version=latest)](https://pyteal.readthedocs.io/en/latest/?badge=latest)
+https://readthedocs.org/projects/pyteal/badge/?version=latest
 
 ### Install 
 
