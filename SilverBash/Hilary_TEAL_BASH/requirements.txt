@@ -1,0 +1,4 @@
+python >3.5 
+py-algorand-sdk==1.8.0
+pyteal==0.9.1
+Any python IDE
