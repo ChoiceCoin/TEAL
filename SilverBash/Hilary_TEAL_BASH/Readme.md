@@ -25,6 +25,9 @@ https://pyteal.readthedocs.io/en/latest/overview.html
 
 simply go to your command line and type 'pip install pyteal'
 this installs all the pyteal packages
+https://pyteal.readthedocs.io/en/latest/installation.html
+
+
 
 
 **PROBLEM**
