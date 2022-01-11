@@ -12,7 +12,7 @@ are available to TMPL_RCV.
 
 
 ### Read broadly on the Solution and Description in my Article
-https://readthedocs.org/projects/pyteal/badge/?version=latest
+https://hashnode.com/post/periodicpayment-with-pyteal-cky9x9msf00fjajs1ezqp69h1
 
 ### Install 
 
