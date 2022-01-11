@@ -1,4 +1,4 @@
-#WHAT IS AN ALGORAND SMART CONTRACT?
+**WHAT IS AN ALGORAND SMART CONTRACT?**
 
 
 
@@ -8,7 +8,7 @@ Algorand Smart Contracts are small programs written in an assembly-like language
 This language is named Transaction Execution Approval Langauge or TEAL.
 This language can be written in python with the aid of the module pyteal
 
-#WHAT IS PYTEAL?
+**WHAT IS PYTEAL?**
 
 
 
@@ -17,8 +17,9 @@ This language can be written in python with the aid of the module pyteal
   Algorand Smart Contracts are implemented using a new language that is stack-based, called Transaction Execution Approval Language (TEAL). This a non-Turing complete language that allows branch forwards but prevents recursive logic to maximize safety and performance.
 
 However, TEAL is essentially an assembly language. With PyTeal, developers can express smart contract logic purely using Python. PyTeal provides high level, functional programming style abstactions over TEAL and does type checking at construction time.
+https://pyteal.readthedocs.io/en/latest/overview.html
   
-#How to install PYTEAL?
+**How to install PYTEAL?**
 
 
 
@@ -26,13 +27,13 @@ simply go to your command line and type 'pip install pyteal'
 this installs all the pyteal packages
 
 
-#PROBLEM
+**PROBLEM**
 
 
 
 The problem given was to create an Algorand Smart Contract with TEAL that solves any problem you choose
 
-#Solution
+**Solution**
 
 
 
