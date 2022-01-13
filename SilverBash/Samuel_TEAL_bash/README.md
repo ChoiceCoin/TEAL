@@ -2,6 +2,8 @@
 
 This demo is an on-chain election proposals using smart contracts using pyteal on the Algorand blockchain.
 
+## video
+- check [video](https://www.youtube.com/watch?v=7KsHCXnsTPo)
 
 ## Run locally
 
@@ -36,7 +38,5 @@ This demo is an on-chain election proposals using smart contracts using pyteal o
 - [x] Voter 1 sends `1000000` algos to the proposal's address
 - [x] each balance being shown after proposal end.
 
-## video
-check [video](https://www.youtube.com/watch?v=7KsHCXnsTPo)
 
 learn more on algorand doc on [pyteal](https://developer.algorand.org/docs/get-details/dapps/pyteal/)
