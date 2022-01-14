@@ -1,0 +1,155 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.centerDiv{
+  height: 100vh; /* Magic here */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.childDiv{
+  border-width:1px;
+  border-color: #4ABCD9;
+  border-style: solid;
+  width:70%;
+  height:80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.playerButton{
+  display:block;
+  height:40px;
+  width:120px;
+  margin-top: 10px;
+  border-radius: 10px;
+  border-width: 0px;
+  background-color: #4ABCD9;
+  color: white;
+  font-weight: bold;
+}
+.game-title{
+  color: #4ABCD9;
+}
+.input{
+  margin-top: 0px;
+  width:"40%";
+  height:40px;
+  border: 2px solid  #4ABCD9;
+  border-radius: 10px ;
+ text-align: center;
+}
+.inputIdentifier{
+  margin-bottom: 4px;
+  color: #4ABCD9;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+
+}
+.wait-p2{
+  margin-top: 0px;
+}
+.loader-container{
+  position: absolute;
+  background-color: white;
+  box-shadow: 3px 3px #4abcd9, -3px -3px #4abcd9;
+  width:200px;
+  height: 200px;
+  z-index: 100;
+}
+.loader,
+.loader:before,
+.loader:after {
+  background: #4abcd9;
+  -webkit-animation: load1 1s infinite ease-in-out;
+  animation: load1 1s infinite ease-in-out;
+  width: 1em;
+  height: 4em;
+}
+.loader {
+  color: #4abcd9;
+  text-indent: -9999em;
+  margin: 88px auto;
+  position: relative;
+  z-index: 100;
+  font-size: 11px;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+.loader:before,
+.loader:after {
+  position: absolute;
+  top: 0;
+  content: '';
+}
+.loader:before {
+  left: -1.5em;
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+.loader:after {
+  left: 1.5em;
+}
+@-webkit-keyframes load1 {
+  0%,
+  80%,
+  100% {
+    box-shadow: 0 0;
+    height: 4em;
+  }
+  40% {
+    box-shadow: 0 -2em;
+    height: 5em;
+  }
+}
+@keyframes load1 {
+  0%,
+  80%,
+  100% {
+    box-shadow: 0 0;
+    height: 4em;
+  }
+  40% {
+    box-shadow: 0 -2em;
+    height: 5em;
+  }
+}
