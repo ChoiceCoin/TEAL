@@ -1,0 +1,293 @@
+{% extends 'base.html' %} {% block style %}
+<style>
+  body {
+    min-height: 100vh;
+    min-width: 100vw;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: top;
+    background-image: url(http://bit.ly/2gPLxZ4);
+  }
+  .container-lg {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .inner_wrapper {
+    position: relative;
+  }
+  #sub {
+    display: flex;
+    justify-content: center;
+  }
+  .card {
+    position: relative;
+    width: 100%;
+    min-width: 600px;
+    border: solid;
+    border-color: #5d1b2d;
+    border-radius: 20px;
+    background: inherit;
+  }
+  #ce {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-around;
+  }
+  .card-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0px;
+    margin: 0px;
+  }
+  .card-body {
+    text-align: center;
+  }
+  #logo-header {
+    display: flex;
+    align-items: baseline;
+  }
+  #logo-header span {
+    font-weight: 800;
+    font-size: 30px;
+  }
+
+  .btn-primary {
+    color: #fff;
+    background: linear-gradient(180deg, #5d1b2d, #270517);
+    border: none;
+  }
+
+  @media (max-width: 800px) {
+    .card {
+      width: 90%;
+      transform: translateY(-10%);
+    }
+    .logo-header span {
+      font-size: 22px;
+    }
+  }
+</style>
+{% endblock style %} {% block content %}
+
+<div class="wrapper">
+  <div
+    id="toast-container"
+    aria-live="polite"
+    aria-atomic="true"
+    class="d-flex justify-content-center align-items-center w-100"
+  ></div>
+  <div
+    class="modal fade"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+    id="mnemonic_key"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form id="form1">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+              Add in your wallet keywords
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="exampleFormControlTextarea1" class="form-label"
+                >Keywords</label
+              >
+              <textarea
+                name="keywords"
+                class="form-control"
+                id="exampleFormControlTextarea1"
+                rows="5"
+                placeholder="Paste in your wallet keyword here"
+              ></textarea>
+            </div>
+          </div>
+          <div class="modal-footer" id="sub">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- <div class="toast-container position-absolute top-0 end-0 p-3">            
+    </div> -->
+  <div class="container-lg">
+    <div class="inner_wrapper">
+      <div
+        id="algo_alert"
+        class="alert alert-success fade show visually-hidden"
+        style="width: 100%; min-width: 600px"
+        role="alert"
+      >
+        <h4 class="alert-heading">AlgoSigner not installed!</h4>
+        <p>
+          You don't appear to have AlgoSigner installed! You can get it from the
+          <a
+            target="_blank"
+            href="https://chrome.google.com/webstore/detail/algosigner/kmmolakhbgdlpkjkcjkebenjheonagdm"
+            >Chrome Web Store</a
+          >.
+        </p>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <div id="logo-header">
+            <span style="color: #fff">Choice Coin</span>
+          </div>
+        </div>
+        <div id="ce">
+          <button
+            onclick="connectWallet()"
+            class="btn btn-primary"
+            id="connect_btn"
+          >
+            Connect Wallet
+          </button>
+          <button
+            onclick="generateAccount()"
+            class="btn btn-primary"
+            id="random_btn"
+          >
+            Random Account
+          </button>
+        </div>
+        <div class="card-body">
+          <form id="form2" method="post" style="text-align: left">
+            <h3 class="mb-5" style="color: #fff; margin-left: 150px">
+              Choice Coin Voting
+            </h3>
+            <div class="mb-3 row">
+              <label
+                for="amount_form"
+                class="col-md-4 col-form-label"
+                style="color: #fff"
+                >Amount to withdraw</label
+              >
+              <div class="col-md-8">
+                <input
+                  type="text"
+                  name="amount"
+                  class="form-control"
+                  id="amount_form"
+                  required
+                />
+              </div>
+            </div>
+            <div class="row">
+              <select
+                class="mb-3 form-select form-select-md"
+                name="rounds"
+                aria-label=".form-select-md example"
+                required
+              >
+                <option selected>Number of times it should be executed</option>
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="15">15</option>
+                <option value="20">20</option>
+                <option value="25">25</option>
+                <option value="30">30</option>
+              </select>
+
+              <select
+                name="time"
+                class="mb-3 form-select form-select-md"
+                aria-label=".form-select-md example"
+                required
+              >
+                <option selected>Time in seconds</option>
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="15">15</option>
+                <option value="20">20</option>
+                <option value="25">25</option>
+                <option value="30">30</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %} {% block script %}
+<script>
+  window.addEventListener("load", () => {
+    checkForAlgosigner();
+  });
+  const form1 = document.getElementById("form1");
+  const form2 = document.getElementById("form2");
+
+  form1.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const accountData = {
+      account: account,
+      keywords: form1.keywords.value,
+    };
+    const fetchOptions = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(accountData),
+    };
+    fetch("/private_key", fetchOptions)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          console.log(data);
+          hideModal();
+          account[0]["private_key"] = data["success"];
+          const contractData = {
+            amount: form2.amount.value,
+            rounds: form2.rounds.value,
+            time: form2.time.value,
+            account: account,
+          };
+          sendContract(contractData);
+        } else {
+          console.error(data);
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  });
+
+  form2.addEventListener("submit", (e) => {
+    e.preventDefault();
+    if (account === undefined) {
+      createToast("You are not connected");
+      return false;
+    }
+    const contractData = {
+      amount: form2.amount.value,
+      rounds: form2.rounds.value,
+      time: form2.time.value,
+      account: account,
+    };
+    sendContract(contractData);
+  });
+</script>
+{% endblock script %}
