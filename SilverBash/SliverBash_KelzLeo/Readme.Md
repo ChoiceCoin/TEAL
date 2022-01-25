@@ -1,3 +1,5 @@
 # Using Teal - Pyteal to purely express smart contract logic
 
-### TRUST CROWD FUNDING As per trusted reports 85% of startups delay the delivery 14% don’t deliver what was promised to the angel investors. As of today, crowdfunding platforms have accountability and trust problems. In many cases money from Investors has gone into wrong campaigns and has been misused Implementing a block gain based platform can bring in a change. With blockchain technology investors can know to whom the money is going and how they are spending it. A smart contract helps to block the funds within blockchain until the project or startup founder makes progress in the project
+### The way web hosting works today is by hosting all the web content including textual content, code and media content on a centralized location which can then be accessed over the World Wide Web, but did you know? Your site is going to be down when there is server maintenance or if a load of the server gets high
+
+### What if with blockhan your website doesn’t require a central server? With blockchain you can split your website content into granules and distribute it all over the internet and then link them together using a blockchain registry
