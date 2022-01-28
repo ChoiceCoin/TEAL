@@ -1,0 +1,176 @@
+#pragma version 2
+txn ApplicationID
+int 0
+==
+bnz main_l26
+txn OnCompletion
+int DeleteApplication
+==
+bnz main_l25
+txn OnCompletion
+int UpdateApplication
+==
+bnz main_l24
+txn OnCompletion
+int CloseOut
+==
+bnz main_l23
+txn OnCompletion
+int OptIn
+==
+bnz main_l22
+txna ApplicationArgs 0
+byte "set admin"
+==
+bnz main_l19
+txna ApplicationArgs 0
+byte "mint"
+==
+bnz main_l14
+txna ApplicationArgs 0
+byte "transfer"
+==
+bnz main_l9
+err
+main_l9:
+txn NumAppArgs
+int 2
+==
+bnz main_l11
+err
+main_l11:
+txna ApplicationArgs 1
+btoi
+int 0
+byte "balance"
+app_local_get
+<=
+bnz main_l13
+err
+main_l13:
+int 0
+byte "balance"
+int 0
+byte "balance"
+app_local_get
+txna ApplicationArgs 1
+btoi
+-
+app_local_put
+int 1
+byte "balance"
+int 1
+byte "balance"
+app_local_get
+txna ApplicationArgs 1
+btoi
++
+app_local_put
+int 1
+return
+main_l14:
+txn NumAppArgs
+int 2
+==
+bnz main_l16
+err
+main_l16:
+txna ApplicationArgs 1
+btoi
+byte "reserve"
+app_global_get
+<=
+bnz main_l18
+err
+main_l18:
+byte "reserve"
+byte "reserve"
+app_global_get
+txna ApplicationArgs 1
+btoi
+-
+app_global_put
+int 1
+byte "balance"
+int 1
+byte "balance"
+app_local_get
+txna ApplicationArgs 1
+btoi
++
+app_local_put
+int 0
+byte "admin"
+app_local_get
+return
+main_l19:
+int 0
+byte "admin"
+app_local_get
+txn NumAppArgs
+int 2
+==
+&&
+bnz main_l21
+err
+main_l21:
+int 1
+byte "admin"
+txna ApplicationArgs 1
+btoi
+app_local_put
+int 1
+return
+main_l22:
+int 0
+byte "balance"
+int 0
+app_local_put
+int 1
+return
+main_l23:
+byte "reserve"
+byte "reserve"
+app_global_get
+int 0
+byte "balance"
+app_local_get
++
+app_global_put
+int 1
+return
+main_l24:
+int 0
+byte "admin"
+app_local_get
+return
+main_l25:
+int 0
+byte "admin"
+app_local_get
+return
+main_l26:
+txn NumAppArgs
+int 1
+==
+bnz main_l28
+err
+main_l28:
+byte "total supply"
+txna ApplicationArgs 0
+btoi
+app_global_put
+byte "reserve"
+txna ApplicationArgs 0
+btoi
+app_global_put
+int 0
+byte "admin"
+int 1
+app_local_put
+int 0
+byte "balance"
+int 0
+app_local_put
+int 1
+return

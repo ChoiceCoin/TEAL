@@ -1,0 +1,504 @@
+#pragma version 2
+txn ApplicationID
+int 0
+==
+bnz main_l65
+txn OnCompletion
+int DeleteApplication
+==
+bnz main_l64
+txn OnCompletion
+int UpdateApplication
+==
+bnz main_l63
+txn OnCompletion
+int CloseOut
+==
+bnz main_l62
+txn OnCompletion
+int OptIn
+==
+bnz main_l61
+txna ApplicationArgs 0
+byte "pause"
+==
+bnz main_l58
+txna ApplicationArgs 0
+byte "set admin"
+==
+bnz main_l55
+txna ApplicationArgs 0
+byte "freeze"
+==
+bnz main_l52
+txna ApplicationArgs 0
+byte "max balance"
+==
+bnz main_l46
+txna ApplicationArgs 0
+byte "lock until"
+==
+bnz main_l40
+txna ApplicationArgs 0
+byte "transfer group"
+==
+bnz main_l26
+txna ApplicationArgs 0
+byte "mint"
+==
+bnz main_l23
+txna ApplicationArgs 0
+byte "burn"
+==
+bnz main_l20
+txna ApplicationArgs 0
+byte "transfer"
+==
+bnz main_l15
+err
+main_l15:
+txn NumAppArgs
+int 2
+==
+txn NumAccounts
+int 1
+==
+&&
+txna ApplicationArgs 1
+btoi
+int 0
+byte "balance"
+app_local_get
+<=
+&&
+bnz main_l17
+err
+main_l17:
+int 1
+global CurrentApplicationID
+byte "max balance"
+app_local_get_ex
+store 0
+store 1
+byte "paused"
+app_global_get
+int 0
+byte "frozen"
+app_local_get
+||
+int 1
+byte "frozen"
+app_local_get
+||
+int 0
+byte "lock until"
+app_local_get
+global LatestTimestamp
+>=
+||
+int 1
+byte "lock until"
+app_local_get
+global LatestTimestamp
+>=
+||
+byte "rule"
+int 0
+byte "transfer group"
+app_local_get
+itob
+concat
+int 1
+byte "transfer group"
+app_local_get
+itob
+concat
+app_global_get
+global LatestTimestamp
+>=
+||
+load 0
+load 1
+int 1
+byte "balance"
+app_local_get
+txna ApplicationArgs 1
+btoi
++
+<
+&&
+||
+bnz main_l19
+int 0
+byte "balance"
+int 0
+byte "balance"
+app_local_get
+txna ApplicationArgs 1
+btoi
+-
+app_local_put
+int 1
+byte "balance"
+int 1
+byte "balance"
+app_local_get
+txna ApplicationArgs 1
+btoi
++
+app_local_put
+int 1
+return
+main_l19:
+int 0
+return
+main_l20:
+txn NumAppArgs
+int 2
+==
+txn NumAccounts
+int 1
+==
+&&
+txna ApplicationArgs 1
+btoi
+int 1
+byte "balance"
+app_local_get
+<=
+&&
+bnz main_l22
+err
+main_l22:
+byte "reserve"
+byte "reserve"
+app_global_get
+txna ApplicationArgs 1
+btoi
++
+app_global_put
+int 1
+byte "balance"
+int 1
+byte "balance"
+app_local_get
+txna ApplicationArgs 1
+btoi
+-
+app_local_put
+int 0
+byte "contract admin"
+app_local_get
+return
+main_l23:
+txn NumAppArgs
+int 2
+==
+txn NumAccounts
+int 1
+==
+&&
+txna ApplicationArgs 1
+btoi
+byte "reserve"
+app_global_get
+<=
+&&
+bnz main_l25
+err
+main_l25:
+byte "reserve"
+byte "reserve"
+app_global_get
+txna ApplicationArgs 1
+btoi
+-
+app_global_put
+int 1
+byte "balance"
+int 1
+byte "balance"
+app_local_get
+txna ApplicationArgs 1
+btoi
++
+app_local_put
+int 0
+byte "contract admin"
+app_local_get
+return
+main_l26:
+txn NumAppArgs
+int 2
+>
+bnz main_l28
+err
+main_l28:
+txna ApplicationArgs 1
+byte "set"
+==
+bnz main_l37
+txna ApplicationArgs 1
+byte "lock"
+==
+bnz main_l31
+err
+main_l31:
+txn NumAppArgs
+int 5
+==
+bnz main_l33
+err
+main_l33:
+txna ApplicationArgs 4
+btoi
+int 0
+==
+bnz main_l36
+byte "rule"
+txna ApplicationArgs 2
+btoi
+itob
+concat
+txna ApplicationArgs 3
+btoi
+itob
+concat
+txna ApplicationArgs 4
+btoi
+app_global_put
+main_l35:
+int 0
+byte "transfer admin"
+app_local_get
+return
+main_l36:
+byte "rule"
+txna ApplicationArgs 2
+btoi
+itob
+concat
+txna ApplicationArgs 3
+btoi
+itob
+concat
+app_global_del
+b main_l35
+main_l37:
+txn NumAppArgs
+int 3
+==
+txn NumAccounts
+int 1
+==
+&&
+bnz main_l39
+err
+main_l39:
+int 1
+byte "transfer group"
+txna ApplicationArgs 2
+btoi
+app_local_put
+b main_l35
+main_l40:
+txn NumAppArgs
+int 2
+==
+txn NumAccounts
+int 1
+==
+&&
+bnz main_l42
+err
+main_l42:
+txna ApplicationArgs 1
+btoi
+int 0
+==
+bnz main_l45
+int 1
+byte "lock until"
+txna ApplicationArgs 1
+btoi
+app_local_put
+main_l44:
+int 0
+byte "transfer admin"
+app_local_get
+return
+main_l45:
+int 1
+byte "lock until"
+app_local_del
+b main_l44
+main_l46:
+txn NumAppArgs
+int 2
+==
+txn NumAccounts
+int 1
+==
+&&
+bnz main_l48
+err
+main_l48:
+txna ApplicationArgs 1
+btoi
+int 0
+==
+bnz main_l51
+int 1
+byte "max balance"
+txna ApplicationArgs 1
+btoi
+app_local_put
+main_l50:
+int 0
+byte "transfer admin"
+app_local_get
+return
+main_l51:
+int 1
+byte "max balance"
+app_local_del
+b main_l50
+main_l52:
+txn NumAppArgs
+int 2
+==
+txn NumAccounts
+int 1
+==
+&&
+bnz main_l54
+err
+main_l54:
+int 1
+byte "frozen"
+txna ApplicationArgs 1
+btoi
+app_local_put
+int 0
+byte "contract admin"
+app_local_get
+int 0
+byte "transfer admin"
+app_local_get
+||
+return
+main_l55:
+int 0
+byte "contract admin"
+app_local_get
+txn NumAppArgs
+int 3
+==
+&&
+txna ApplicationArgs 1
+byte "contract admin"
+==
+txna ApplicationArgs 1
+byte "transfer admin"
+==
+||
+&&
+txn NumAccounts
+int 1
+==
+&&
+bnz main_l57
+err
+main_l57:
+int 1
+txna ApplicationArgs 1
+txna ApplicationArgs 2
+btoi
+app_local_put
+int 1
+return
+main_l58:
+txn NumAppArgs
+int 2
+==
+bnz main_l60
+err
+main_l60:
+byte "paused"
+txna ApplicationArgs 1
+btoi
+app_global_put
+int 0
+byte "contract admin"
+app_local_get
+int 0
+byte "transfer admin"
+app_local_get
+||
+return
+main_l61:
+int 0
+byte "balance"
+int 0
+app_local_put
+int 1
+return
+main_l62:
+byte "reserve"
+byte "reserve"
+app_global_get
+int 0
+byte "balance"
+app_local_get
++
+app_global_put
+int 1
+return
+main_l63:
+int 0
+byte "contract admin"
+app_local_get
+return
+main_l64:
+int 0
+byte "contract admin"
+app_local_get
+byte "total supply"
+app_global_get
+byte "reserve"
+app_global_get
+==
+&&
+return
+main_l65:
+txn NumAppArgs
+int 1
+==
+bnz main_l67
+err
+main_l67:
+byte "total supply"
+txna ApplicationArgs 0
+btoi
+app_global_put
+byte "reserve"
+txna ApplicationArgs 0
+btoi
+app_global_put
+byte "paused"
+int 0
+app_global_put
+int 0
+byte "contract admin"
+int 1
+app_local_put
+int 0
+byte "transfer admin"
+int 1
+app_local_put
+int 0
+byte "balance"
+int 0
+app_local_put
+int 1
+return
