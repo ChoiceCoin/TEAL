@@ -6,3 +6,5 @@ Repository for TEAL Code.
 [v10 Opcodes](https://developer.algorand.org/docs/get-details/dapps/avm/teal/opcodes/v10/)
 
 [Transactions referance](https://developer.algorand.org/docs/get-details/transactions/transactions/)
+
+[Smart Signatures](https://developer.algorand.org/docs/get-details/dapps/smart-contracts/#smart-signatures)
